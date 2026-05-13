@@ -523,10 +523,17 @@ function renderSolution(path, time) {
 
                 const cell = document.createElement("div");
 
-                cell.className =
-                    `solution-cell color${value}`;
-
-                cell.textContent = value;
+				let cls = `solution-cell color${value}`;
+					
+				if (
+				    value !== 0 &&
+				    blocks[value].flip === Flips.back
+				) {
+				    cls += " back";
+				}
+					
+				cell.className = cls;
+                //cell.textContent = value;
 
                 boardDiv.appendChild(cell);
             }

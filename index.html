@@ -83,6 +83,28 @@ button.control {
     font-weight: bold;
     font-size: 18px;
 }
+.solution-cell.back {
+    position: relative;
+    overflow: hidden;
+}
+
+.solution-cell.back::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    /* 斜線 */
+    background:
+        repeating-linear-gradient(
+            45deg,
+            rgba(0,0,0,0.35) 0px,
+            rgba(0,0,0,0.35) 4px,
+            transparent 4px,
+            transparent 10px
+        );
+
+    pointer-events: none;
+}
 
 .color0 { background: white; }
 .color1 { background: #ff9090; }
