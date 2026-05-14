@@ -105,6 +105,31 @@ button.control {
 
     pointer-events: none;
 }
+#modalOverlay {
+    display: none; /* 最初は非表示 */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    justify-content: center;
+    align-items: center;
+}
+
+/* モーダル本体 */
+#importMenu {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 300px;
+    text-align: center;
+}
+
+select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 5px;
+}
+
 
 .color0 { background: white; }
 .color1 { background: #ff9090; }
@@ -123,10 +148,23 @@ button.control {
 <div class="controls">
     <button class="control" onclick="clearBoard()">Clear</button>
     <button class="control" onclick="solve()">Solve</button>
+	 <button class="control" id="importBtn">Import</button>
+
 </div>
 
 <div id="solution"></div>
 
+
+<!-- モーダル -->
+<div id="modalOverlay">
+    <div id="importMenu">
+        <h3>保存データを選択</h3>
+        <select id="saveSelect"></select>
+        <button id="loadBtn">Load</button>
+        <button id="closeBtn">Close</button>
+    </div>
+</div>
+	
 <script src="main.js">
 </script>
 

@@ -201,6 +201,7 @@ function solve() {
 	} else {
 		renderSolution(path, time);
 	}
+	
 }
 function bfs(start) {
 	console.time("puzzle");
@@ -522,16 +523,17 @@ function renderSolution(path, time) {
 
                 const cell = document.createElement("div");
 
-				let cls = `solution-cell color${value}`;
+					let cls = `solution-cell color${value}`;
 					
-				if (
-				    value !== 0 &&
-				    blocks[value].flip === Flips.back
-				) {
-				    cls += " back";
-				}
+					if (
+					    value !== 0 &&
+					    blocks[value].flip === Flips.back
+					) {
+					    cls += " back";
+					}
 					
-				cell.className = cls;
+					cell.className = cls;
+
                 //cell.textContent = value;
 
                 boardDiv.appendChild(cell);
@@ -541,3 +543,48 @@ function renderSolution(path, time) {
         solution.appendChild(boardDiv);
     });
 }
+
+const blockData = [
+	{
+		title: "① 4手",
+		data: [
+			[4,4,4,0,3],
+			[0,2,4,4,3],
+			[0,2,1,1,3],
+			[2,2,1,3,3]
+		]
+	}
+];
+
+
+const importMenu = document.getElementById("importMenu");
+const saveSelect = document.getElementById("saveSelect");
+
+// select を自動生成
+blockData.forEach((item, index) => {
+    const option = document.createElement("option");
+    option.value = index;      // 配列番号を保存
+    option.textContent = item.title;
+    saveSelect.appendChild(option);
+});
+
+const modal = document.getElementById("modalOverlay");
+const importBtn = document.getElementById("importBtn");
+const closeBtn = document.getElementById("closeBtn");
+
+// 開く
+importBtn.onclick = () => {
+    modal.style.display = "flex";
+};
+
+// 閉じる
+closeBtn.onclick = () => {
+    modal.style.display = "none";
+};
+
+// 背景クリックで閉じる
+modal.onclick = (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+};
