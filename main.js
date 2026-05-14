@@ -198,10 +198,9 @@ function solve() {
 	console.log(path);
 	if (path == false) {
 		solution.innerHTML = `<h3>とけない．．（${time.toFixed(2)} ms）</h3>`;
+	} else {
+		renderSolution(path, time);
 	}
-
-	renderSolution(path, time);
-	
 }
 function bfs(start) {
 	console.time("puzzle");
