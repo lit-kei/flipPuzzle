@@ -546,19 +546,149 @@ function renderSolution(path, time) {
 
 const blockData = [
 	{
-		title: "① 4手",
+		title: "1. ４手（プリント）",
 		data: [
 			[4,4,4,0,3],
 			[0,2,4,4,3],
 			[0,2,1,1,3],
 			[2,2,1,3,3]
 		]
-	}
+	},
+	{
+		title: "2. ４手（プリント）",
+		data: [
+			[0,2,2,4,3],
+			[0,2,0,4,3],
+			[1,2,4,4,3],
+			[1,1,4,3,3]
+		]
+	},
+	{
+		title: "3. ５手（プリント）",
+		data: [
+			[0,4,4,4,0],
+			[2,2,1,4,4],
+			[2,3,1,1,0],
+			[2,3,3,3,3]
+		]
+	},
+	{
+		title: "4. ５手（プリント）",
+		data: [
+			[4,4,4,0,3],
+			[0,2,4,4,3],
+			[1,2,2,2,3],
+			[1,1,0,3,3]
+		]
+	},
+	{
+		title: "5. ６手（プリント）",
+		data: [
+			[0,2,2,2,3],
+			[4,4,0,2,3],
+			[1,4,4,4,3],
+			[1,1,0,3,3]
+		]
+	},
+	{
+		title: "6. ７手（プリント）",
+		data: [
+			[0,4,2,2,2],
+			[4,4,0,1,2],
+			[4,3,1,1,0],
+			[4,3,3,3,3]
+		]
+	},
+	{
+		title: "7. ８手（プリント）",
+		data: [
+			[0,2,2,2,3],
+			[4,4,4,2,3],
+			[0,1,4,4,3],
+			[0,1,1,3,3]
+		]
+	},
+	{
+		title: "8. ８手（プリント）",
+		data: [
+			[2,2,4,0,3],
+			[2,4,4,0,3],
+			[2,4,1,1,3],
+			[0,4,1,3,3]
+		]
+	},
+	{
+		title: "9. ９手（プリント）",
+		data: [
+			[0,4,2,2,0],
+			[4,4,2,1,1],
+			[4,3,2,1,0],
+			[4,3,3,3,3]
+		]
+	},
+	{
+		title: "10. １２手（プリント）",
+		data: [
+			[0,4,0,2,3],
+			[4,4,0,2,3],
+			[4,1,2,2,3],
+			[4,1,1,3,3]
+		]
+	},
+	{
+		title: "11. １６手（プリント）",
+		data: [
+			[0,4,1,1,3],
+			[4,4,2,1,3],
+			[4,0,2,0,3],
+			[4,2,2,3,3]
+		]
+	},
+	{
+		title: "12. １８手（プリント）",
+		data: [
+			[4,4,4,0,0],
+			[1,1,4,4,0],
+			[3,1,2,2,2],
+			[3,3,3,3,2]
+		]
+	},
+	{
+		title: "13. ２２手（プリント）",
+		data: [
+			[1,4,4,4,0],
+			[1,1,2,4,4],
+			[0,3,2,2,2],
+			[0,3,3,3,3]
+		]
+	},
+	{
+		title: "14. ２４手（プリント）",
+		data: [
+			[4,4,4,0,0],
+			[2,2,4,4,1],
+			[2,3,0,1,1],
+			[2,3,3,3,3]
+		]
+	},
+	{
+		title: "15. ２５手（プリント）",
+		data: [
+			[4,4,4,1,1],
+			[0,3,4,4,1],
+			[2,3,3,3,3],
+			[2,2,2,0,0]
+		]
+	},
 ];
 
 
 const importMenu = document.getElementById("importMenu");
 const saveSelect = document.getElementById("saveSelect");
+const modal = document.getElementById("modalOverlay");
+const importBtn = document.getElementById("importBtn");
+const closeBtn = document.getElementById("closeBtn");
+const loadBtn = document.getElementById("loadBtn");
 
 // select を自動生成
 blockData.forEach((item, index) => {
@@ -568,9 +698,6 @@ blockData.forEach((item, index) => {
     saveSelect.appendChild(option);
 });
 
-const modal = document.getElementById("modalOverlay");
-const importBtn = document.getElementById("importBtn");
-const closeBtn = document.getElementById("closeBtn");
 
 // 開く
 importBtn.onclick = () => {
@@ -579,6 +706,20 @@ importBtn.onclick = () => {
 
 // 閉じる
 closeBtn.onclick = () => {
+    modal.style.display = "none";
+};
+
+loadBtn.onclick = () => {
+	const e = blockData[Number(saveSelect.value)].data;
+	for (let i = 0; i < H; i++) {
+		for (let j = 0; j < W; j++) {
+			inputField[i][j] = e[i][j];
+		}
+	}
+	createBoard();
+
+	solve();
+
     modal.style.display = "none";
 };
 
